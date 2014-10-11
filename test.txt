@@ -1,8 +1,0 @@
-This
-is
-a very small
-file.
-L3 Bioinformatics Limited
-Wrapper wrapper
-Tools SDK SDK
-hihi
