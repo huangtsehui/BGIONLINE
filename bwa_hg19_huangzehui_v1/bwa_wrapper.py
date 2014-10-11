@@ -13,6 +13,7 @@ class BwaWrapper(define.Wrapper):
 
     class Params(define.Params):
         sampleName = define.string(name='sample name',required=True)
+        sampleName = define.Inputs()
 
     def execute(self):
         outFileName = "%s.bam" % self.Params.sampleName
