@@ -1,0 +1,64 @@
+{
+    "id"    : "bgitest",
+    "name"  : "BWA + Picard",
+    "description" : "a mini pipeline with bwa align and picard sort nodes",
+
+    "nodes" : [
+        {
+            "id" : "bwa_aln",
+            "tools":"",
+            "params": {
+                "sampleName":{
+                     "exposed": true,
+                    "required": true,
+                    "default":"hg19.fa"
+                },
+                "reference":{
+                    "exposed":true,
+                    "required":true
+                }
+            }
+        },
+
+        {
+            "id" : "sort_and_index",
+            "tools": "",
+            "params": {
+                "reference":{
+                    "exposed":true,
+                    "required":true,
+                    "default":"hg19.fa"
+                }
+            }
+        }
+    ],
+
+    "edges":[
+        {
+            "id" : "bwa_to_sort",
+            "from" : "bwa_aln",
+            "output": "bam",
+            "to": "picard_sort_and_samtools_index",
+            "input": "bamInput",
+            "dlp": false
+        }
+    ],
+
+    "inputs": {
+        "fastq":{
+            "node":"bwa_aln",
+            "input":"fq",
+            "required":true,
+            "dlp":false
+        }
+    },
+
+    "outputs":{
+        "sorted_bam_file":{
+            "node":"sort_and_index",
+            "output":"out",
+            "required":true
+        }
+    }
+
+}
